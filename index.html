@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Verve 17 Neo | Концепт</title>
+    
+    <!-- Шрифты -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.19/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5.0.19/index.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        neo: {
+                            dark: '#020617',
+                            blue: '#0ea5e9',
+                            purple: '#8b5cf6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Иконки -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { 
+            background-color: #020617; 
+            color: #f8fafc; 
+            overflow-x: hidden; 
+        }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-glow { text-shadow: 0 0 20px rgba(14, 165, 233, 0.5); }
+
+        /* Анимация появления блоков */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Активная ссылка в меню */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #0ea5e9;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #0ea5e9;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-neo-blue selection:text-white">
+
+    <!-- Навигация -->
+    <nav class="fixed w-full z-50 glass-panel top-0 left-0 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 w-full flex items-center justify-between">
+            <!-- Лого -->
+            <a href="#" onclick="scrollToSection('hero')" class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-8 h-8 rounded bg-gradient-to-br from-neo-blue to-neo-purple flex items-center justify-center font-display font-bold text-white">N</div>
+                <span class="font-display font-bold tracking-wider text-lg hidden sm:block">NEO VERVE <span class="text-neo-blue text-xs align-top">17</span></span>
+            </a>
+
+            <!-- Меню ПК -->
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
+                <button onclick="scrollToSection('specs')" class="nav-link text-slate-400 hover:text-white">Железо</button>
+                <button onclick="scrollToSection('design')" class="nav-link text-slate-400 hover:text-white">Дизайн</button>
+                <button onclick="scrollToSection('camera')" class="nav-link text-slate-400 hover:text-white">Камера</button>
+                <button onclick="scrollToSection('screen')" class="nav-link text-slate-400 hover:text-white">Экран</button>
+            </div>
+
+            <!-- Меню Мобильное Кнопка -->
+            <button class="md:hidden text-white p-2" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Выпадающее меню мобильное -->
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full glass-panel border-t border-white/10 flex-col p-4 space-y-4 md:hidden">
+            <button onclick="scrollToSection('specs'); toggleMobileMenu()" class="text-left text-slate-300 hover:text-neo-blue py-2 w-full border-b border-white/5">Железо</button>
+            <button onclick="scrollToSection('design'); toggleMobileMenu()" class="text-left text-slate-300 hover:text-neo-blue py-2 w-full border-b border-white/5">Дизайн</button>
+            <button onclick="scrollToSection('camera'); toggleMobileMenu()" class="text-left text-slate-300 hover:text-neo-blue py-2 w-full border-b border-white/5">Камера</button>
+            <button onclick="scrollToSection('screen'); toggleMobileMenu()" class="text-left text-slate-300 hover:text-neo-blue py-2 w-full">Экран</button>
+        </div>
+    </nav>
+
+    <!-- Главный экран (Hero) -->
+    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden text-center px-4">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(14,165,233,0.15)_0%,_transparent_70%)] z-0"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neo-blue/10 rounded-full blur-[120px] animate-pulse"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto reveal active">
+            <div class="inline-block px-3 py-1 mb-6 rounded-full border border-neo-blue/30 bg-neo-blue/10 text-neo-blue text-[10px] font-bold uppercase tracking-[0.2em]">
+                Concept Pre-Release
+            </div>
+            <h1 class="font-display text-5xl md:text-8xl font-black leading-tight text-white mb-6">
+                NEO VERVE <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neo-blue to-neo-purple text-glow">17 NEO</span>
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                Мощность ПК в кармане. Snapdragon 8 Elite Gen-5 и графика RTX 4070 в корпусе толщиной 6.6 мм.
+            </p>
+        </div>
+
+        <!-- Телефон -->
+        <div class="relative mt-12 z-10 reveal active delay-200">
+            <div class="relative w-[280px] md:w-[340px] aspect-[9/19] bg-black rounded-[3rem] border-[6px] border-slate-800 shadow-[0_0_50px_rgba(14,165,233,0.3)] overflow-hidden mx-auto">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-black"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <div class="text-7xl font-display font-bold text-white/10 select-none">12:00</div>
+                    <div class="mt-2 text-neo-blue font-medium tracking-widest text-sm">JUNE 2026</div>
+                </div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 h-7 w-32 bg-black rounded-b-2xl z-20"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел ЖЕЛЕЗО -->
+    <section id="specs" class="py-24 relative z-10 bg-black/20 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="font-display text-3xl md:text-5xl font-bold mb-12 text-center reveal">Сердце зверя</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-panel p-8 rounded-2xl reveal hover:border-neo-blue/50 transition-colors group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <i data-lucide="cpu" class="w-10 h-10 text-red-500 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Snapdragon 8 Elite</h3>
+                            <p class="text-sm text-slate-500">Процессор Gen-5</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm">Новое поколение архитектуры. Прирост производительности +40% при сниженном энергопотреблении.</p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl reveal hover:border-green-500/50 transition-colors group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded flex items-center justify-center text-green-500 font-bold text-xs group-hover:scale-110 transition-transform">RTX</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">NVIDIA RTX 4070</h3>
+                            <p class="text-sm text-slate-500">Мобильная графика</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm">Полноценная трассировка лучей и DLSS 3.5. Играйте в AAA-игры на ультра настройках.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел ДИЗАЙН -->
+    <section id="design" class="py-24 relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 reveal">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Невесомость</h2>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                            <span class="font-bold text-neo-blue">6.6</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg">Ультратонкий корпус</h4>
+                            <p class="text-slate-400 text-sm">Толщина всего 6.6 мм. Алюминий авиационного класса.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                            <span class="font-bold text-neo-blue">189</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg">Вес 189 грамм</h4>
+                            <p class="text-slate-400 text-sm">Идеальный баланс. Не чувствуется в руке.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10">
+                    <p class="text-sm text-slate-500 uppercase tracking-widest mb-4">Цвета</p>
+                    <div class="flex gap-4">
+                        <div class="group flex flex-col items-center gap-2 cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-slate-900 border-2 border-transparent group-hover:border-white transition-all shadow-lg"></div>
+                            <span class="text-xs text-slate-400">Onyx</span>
+                        </div>
+                        <div class="group flex flex-col items-center gap-2 cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-slate-300 border-2 border-transparent group-hover:border-white transition-all shadow-lg"></div>
+                            <span class="text-xs text-slate-400">Silver</span>
+                        </div>
+                        <div class="group flex flex-col items-center gap-2 cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-blue-600 border-2 border-transparent group-hover:border-white transition-all shadow-lg shadow-blue-500/50"></div>
+                            <span class="text-xs text-slate-400">Nebula</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-1 md:order-2 flex justify-center reveal">
+                <div class="w-64 h-[450px] bg-gradient-to-tr from-slate-800 to-black rounded-[2.5rem] border border-slate-700 shadow-2xl transform rotate-6 relative hover:rotate-0 transition-transform duration-500">
+                    <div class="absolute inset-0 rounded-[2.5rem] border border-white/10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел КАМЕРА -->
+    <section id="camera" class="py-24 relative z-10 bg-black/20 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="font-display text-3xl md:text-5xl font-bold mb-16 reveal">Оптика Sony</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass-panel p-6 rounded-xl reveal hover:bg-white/5 transition-colors">
+                    <div class="text-3xl font-bold text-white mb-1">50<span class="text-sm text-slate-500">МП</span></div>
+                    <div class="text-sm text-neo-blue font-medium">Основная</div>
+                    <div class="text-xs text-slate-500 mt-2">Sony IMX890</div>
+                </div>
+                <div class="glass-panel p-6 rounded-xl reveal hover:bg-white/5 transition-colors">
+                    <div class="text-3xl font-bold text-white mb-1">50<span class="text-sm text-slate-500">МП</span></div>
+                    <div class="text-sm text-neo-blue font-medium">Ультраширик</div>
+                    <div class="text-xs text-slate-500 mt-2">120° обзор</div>
+                </div>
+                <div class="glass-panel p-6 rounded-xl reveal hover:bg-white/5 transition-colors">
+                    <div class="text-3xl font-bold text-white mb-1">32<span class="text-sm text-slate-500">МП</span></div>
+                    <div class="text-sm text-neo-blue font-medium">Фронтальная</div>
+                    <div class="text-xs text-slate-500 mt-2">AI Beauty</div>
+                </div>
+                <div class="glass-panel p-6 rounded-xl reveal hover:bg-white/5 transition-colors">
+                    <div class="text-3xl font-bold text-white mb-1">8K</div>
+                    <div class="text-sm text-neo-blue font-medium">Видео</div>
+                    <div class="text-xs text-slate-500 mt-2">@ 30fps</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел ЭКРАН -->
+    <section id="screen" class="py-24 relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div class="glass-panel p-8 rounded-2xl reveal hover:border-neo-blue/30 transition-colors">
+                <i data-lucide="monitor" class="w-8 h-8 text-neo-blue mb-4"></i>
+                <h3 class="text-2xl font-bold text-white mb-2">AMOLED 2K 144Hz</h3>
+                <p class="text-slate-400 text-sm mb-4">Яркость до 2000 нит. HDR10+. Идеальный черный цвет.</p>
+                <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                    <div class="bg-neo-blue h-full w-[95%]"></div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl reveal hover:border-green-500/30 transition-colors">
+                <i data-lucide="battery-charging" class="w-8 h-8 text-green-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-white mb-2">5500 мАч</h3>
+                <p class="text-slate-400 text-sm mb-4">Зарядка 120Вт (0-100% за 19 минут). Беспроводная 50Вт.</p>
+                <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                    <div class="bg-green-500 h-full w-[85%]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="py-12 border-t border-white/5 text-center bg-black">
+        <div class="text-slate-600 text-sm">
+            <p class="font-display font-bold text-slate-500 mb-2">NEO VERVE 17 NEO</p>
+            <p>&copy; 2026 Neo Technologies. Concept Design.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Инициализация иконок
+        lucide.createIcons();
+
+        // 2. Функция плавной прокрутки (Гарантированно работает)
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                // Вычисляем позицию с учетом высоты фиксированного меню (80px)
+                const offsetTop = section.getBoundingClientRect().top + window.pageYOffset - 80;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // 3. Мобильное меню
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        // 4. Анимация появления блоков при скролле
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 5. Подсветка активного пункта меню при скролле
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Если мы проскроллили до секции (с учетом отступа 150px)
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Проверяем, содержит ли onclick ссылки ID текущей секции
+                if (link.getAttribute('onclick').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
